@@ -65,22 +65,19 @@ export class EditorPersonasComponent implements OnInit {
       saldo: this.form.value.saldo,
       //dCategoria: this.form.value.dCategoria,
     }
-
+    this.loading = true;
     if (this.id != '') {
-      this.loading = false;
       persona.id = this.id
       this._personaService.udPersona(this.id, persona)
       this.loading = false;
       this.router.navigate(['/']);
-      this.toastr.success('Registro Actualizado', 'Persona Actualizada');
-
+      this.toastr.success(`${persona.name} Actualizado`, 'Persona Actualizada');
     } else {
-      this.loading = true;
       this._personaService.postPersona(persona);
       this.loading = false;
       this.router.navigate(['/']);
       this.toastr.success('Registro Agregado', 'Persona Agregada');
     }
-    //console.log(product)
+
   }
 }

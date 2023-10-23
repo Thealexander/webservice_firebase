@@ -9,7 +9,7 @@
   <div *ngIf="loading" class="spinner-border" role="status">
     <span class="sr-only">Loading...</span>
   </div>
-  <table *ngIf="personas!.length > 0" class="table table-hover">
+  <table *ngIf="personas && personas.length > 0" class="table table-hover">
     <thead>
       <tr>
         <th scope="col">Apellido</th>
@@ -50,5 +50,5 @@
       </tr>
     </tbody>
   </table>
-  <h5 *ngIf="personas?.length == 0">No hay registros para mostrar</h5>
+  <h5 *ngIf="!personas || personas.length === 0">No hay registros para mostrar</h5>
 </div>
