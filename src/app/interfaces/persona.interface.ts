@@ -1,10 +1,10 @@
 import { Categoria } from "./category.interface";
 
 export interface Persona {
-  id?: number;
-  nombre?: string;
-  apellido: string;
+  id?: string;
+  apellido?: string;
   email?: string;
+  name?: string;
   saldo?: number;
   //idCategoria?: number;
   //dCategoria?: Categoria;

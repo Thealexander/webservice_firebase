@@ -1,0 +1,54 @@
+<app-progress-bar *ngIf="loading"></app-progress-bar>
+<div *ngIf="!loading" class="container">
+  <div class="title">
+    <h2>Listado de Productos</h2>
+    <button type="button" class="btn btn-dark" routerLink="/add">
+      Agregar
+    </button>
+  </div>
+  <div *ngIf="loading" class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <table *ngIf="personas!.length > 0" class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Apellido</th>
+        <th scope="col">Nombre</th>
+        <!--  <th scope="col">Categoria</th>-->
+        <th scope="col">Email</th>
+        <th scope="col">Saldo</th>
+        <th scope="col">Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let persona of personas; let i = index"
+        class="table-active"
+        [class.active]="i == currentIndex"
+        (click)="setActivePersona(persona, i)"
+      >
+        <td>{{ persona.apellido }}</td>
+        <td>{{ persona.name }}</td>
+        <td>{{ persona.email }}</td>
+        <td>{{ persona.saldo | currency }}</td>
+        <td>
+          <button
+            routerLink="/edit/{{ persona.id }}"
+            type="button"
+            class="btn btn-primary btn-sm"
+          >
+            Editar
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary btn-sm ms-2"
+            (click)="onClickDelete(persona.id!)"
+          >
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 *ngIf="personas?.length == 0">No hay registros para mostrar</h5>
+</div>

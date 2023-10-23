@@ -4,14 +4,24 @@ import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
-import { PersonasComponent } from './components/productos/productos/productos.component';
+import { PersonasComponent } from './components/personas/personas/personas.component';
 import { CategoriasComponent } from './components/categorias/categorias/categorias.component';
 import { EditorCategoriasComponent } from './components/categorias/editor-categorias/editor-categorias.component';
-import { EditorProductosComponent } from './components/productos/editor-productos/editor-productos.component';
+import { EditorPersonasComponent } from './components/personas/editor-personas/editor-personas.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+//import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+//import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+
+import { environment } from 'src/environments/enviroment';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProgressBarComponent } from './shared/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -20,9 +30,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     PersonasComponent,
     CategoriasComponent,
     EditorCategoriasComponent,
-    EditorProductosComponent,
-
-
+    EditorPersonasComponent,
+    ProgressBarComponent,
 
   ],
   imports: [
@@ -30,7 +39,15 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-center',
+      preventDuplicates: true,
+    }),
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firestore),
+    AngularFirestoreModule,
 
   ],
   providers: [],

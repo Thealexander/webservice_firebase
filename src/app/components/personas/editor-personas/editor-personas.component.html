@@ -1,0 +1,20 @@
+<app-progress-bar *ngIf="loading"></app-progress-bar>
+<div *ngIf="!loading" class="row" mt-1>
+  <div class="col-lg-4 offset-lg-4">
+    <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header text-center">{{operacion}} Persona</div>
+      <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="addPersona()">
+          <input formControlName="name" type="text" class="form-control mt-2" placeholder="Nombre de la persona">
+          <span *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched" >Nombre es <strong>requerido</strong></span>
+          <input formControlName="apellido" type="text" class="form-control mt-2" placeholder="Apellido">
+          <input formControlName="email" type="text" class="form-control mt-2" placeholder="Email">
+          <input formControlName="saldo" type="number" class="form-control mt-2" placeholder="Saldo">
+          <div class="row mt-2 text-center">
+            <div class="col-lg-6"><button [disabled]="form.invalid" type="submit" class="btn btn-primary">{{resultado}}</button></div>
+            <div class="col-lg-6"><button type="button" routerLink="/" class="btn btn-success">Regresar</button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
